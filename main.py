@@ -1,11 +1,53 @@
 import sys
 import argparse
+import math
+import nltk
 
+_CONSTANT = 101
+
+# Hash Function Logic
+def getHash(s):
+    H = 0 
+    while i < len(s):
+        H += ord(s[i])*math.pow(_CONSTANT,i)
+    return H
+
+def getMatch(sHashed, s, l):
+    hashV = []
+    for i in xrange(len(s)-l+1):
+	if i != 0:
+	    H += ((hashV[i-1] - ord(s[i-1])) / l) + ord(s[i+l])*math.pow(_CONSTANT,l-1)
+	else:
+	    for j in xrange(len(s[i:i+l])):
+	        H += ord(s[i:i+l][j])*math.pow(_CONSTANT,j)
+	
+
+        # Stopping Condition
+	if H == sHashed:
+	    return 'Found'
+	else:
+            pass
+        
+        # Required for next level hash comparison
+        # Rolling Window hash function Implentation
+	hashV.append(H)
+    
+    return 'Not Found'
 
 
 def runKarp(s1, s2):
-    pass
+    if len(s1) < len(s2):
+	s1Hased = getHash(s1)
+        # Slide over s2 with window length of `len(s1)`
+        m =  getMatch(s1Hashed, s2, len(s1))
 
+    elif len(s2) < len(s1):
+	s2Hashed = getHash(s2)
+    else:
+	# Random selection
+        # Let's choose s1
+	s1Hashed = getHash(s1)
+    return m
 
 # Calculate the Hamming Distance between 2 Strings
 # s1 and s2
@@ -33,7 +75,11 @@ def runAffineGap(s1, s2):
 def main(algo, s1, s2):
     
     if algo == 'karp':
-        runKarp(s1, s2)
+        result = runKarp(s1, s2)
+	if result == 'Found':
+            print '\nSubstring found\n'
+	else:
+            print '\nSubstring not found\n'
     elif algo == 'hamming':
 	result = runHamming(s1, s2)
 	if type(result) == int:
