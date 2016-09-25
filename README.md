@@ -7,7 +7,7 @@ This Repo deals with many String Matching / Metric Algorithms and their implemen
 * `main.py` : The main code containing all the above mentioned algorithms.
 
 #### Below are some algorithms that you can mention as argument
-`-karp` `-hamming` `-laven` `affinegap`
+`-karp` `-hamming` `-laven` `-affinegap`
 ###### Below command runs the code for string mathcing considering Rabin karp as the algorithm.
 `> python main.py -algo -karp -s1 Today is monday -s2 onday` 
 
