@@ -5,7 +5,7 @@ import nltk
 
 _CONSTANT = 101
 
-# Hash Function Logic
+## Hash Function Logic
 def getHash(s):
     H = 0 
     while i < len(s):
